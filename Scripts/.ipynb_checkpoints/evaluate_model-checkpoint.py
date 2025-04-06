@@ -4,8 +4,8 @@ import joblib
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error, r2_score
 
-# Load the processed data (assuming data is already preprocessed and cleaned)
-data = pd.read_csv('data/processed_data.csv')
+# Load the processed data 
+data = pd.read_csv('../Data/processed_boston.csv')
 
 # Define features and target variable
 X = data.drop('medv', axis=1)

@@ -6,11 +6,11 @@ from sklearn.metrics import mean_squared_error, r2_score
 import joblib
 
 # Load the processed data
-data = pd.read_csv('data/processed_data.csv')
+data = pd.read_csv('../Data/processed_boston.csv')
 
 # Define features and target variable
-X = data.drop('MEDV', axis=1)
-y = np.log(data['MEDV'] + 1)  
+X = data.drop('medv', axis=1)
+y = np.log(data['medv'] + 1)  
 
 # Train-test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -35,6 +35,17 @@ r2 = r2_score(y_test, y_pred)
 # Print evaluation metrics
 print("Mean Squared Error:", mse)
 print("R² Score:", r2)
+
+import os
+import joblib
+
+# Ensure the directory exists for saving the model
+output_dir = 'models'
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+# Save the best model
+joblib.dump(best_model, os.path.join(output_dir, 'ridge_best_model.pkl'))
 
 # Save the best model
 joblib.dump(best_model, 'models/ridge_best_model.pkl')
